@@ -48,7 +48,7 @@ export default function Privacy() {
   ];
 
   return (
-    <section className="py-12 bg-forest-50 dark:bg-black">
+    <section className="py-12 bg-gradient-to-br from-purple-50 to-pink-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-purple-900">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -59,9 +59,9 @@ export default function Privacy() {
           <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full flex items-center justify-center comic-shadow border-4 border-purple-400">
             <Shield className="text-purple-800 w-12 h-12" />
           </div>
-          <h2 className="text-4xl font-bold text-forest-700 dark:text-white mb-4 font-comic">Privacy Policy</h2>
-          <p className="text-xl text-forest-600 dark:text-gray-300 font-nunito">Your privacy is our priority. Here's how we protect your data.</p>
-          <p className="text-sm text-forest-500 dark:text-gray-400 font-nunito mt-2">Last updated: January 2024</p>
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4 font-comic">Privacy Policy</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 font-nunito">Your privacy is our priority. Here's how we protect your data.</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-nunito mt-2">Last updated: January 2024</p>
         </motion.div>
 
         <motion.div 
@@ -88,8 +88,8 @@ export default function Privacy() {
                   <section.icon className={`${section.iconColor} w-6 h-6`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-forest-700 dark:text-white mb-3 font-comic">{section.title}</h3>
-                  <p className="text-forest-600 dark:text-gray-300 font-nunito leading-relaxed">{section.content}</p>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 font-comic">{section.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 font-nunito leading-relaxed">{section.content}</p>
                 </div>
               </div>
             </motion.div>
