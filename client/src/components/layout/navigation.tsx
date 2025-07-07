@@ -50,8 +50,9 @@ export default function Navigation() {
                   className={`nav-link font-semibold transition-colors duration-200 px-3 py-2 rounded-lg ${
                     isActive(item.path)
                       ? "text-white dark:text-white bg-green-600 dark:bg-blue-600 comic-shadow border-2 border-black dark:border-white"
-                      : "text-forest-700 dark:text-white hover:text-white hover:bg-green-500 dark:hover:bg-blue-500 comic-shadow hover:border-2 hover:border-black dark:hover:border-white"
+                      : "text-forest-700 dark:text-white hover:text-white hover:bg-green-500 dark:hover:bg-blue-500 hover:comic-shadow hover:border-2 hover:border-black dark:hover:border-white"
                   }`}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {item.label}
@@ -92,8 +93,9 @@ export default function Navigation() {
                     className={`block px-4 py-2 rounded-lg transition-colors font-semibold ${
                       isActive(item.path)
                         ? "text-white dark:text-white bg-green-600 dark:bg-blue-600 comic-shadow border-2 border-black dark:border-white"
-                        : "text-forest-700 dark:text-white hover:text-white hover:bg-green-500 dark:hover:bg-blue-500 comic-shadow hover:border-2 hover:border-black dark:hover:border-white"
+                        : "text-forest-700 dark:text-white hover:text-white hover:bg-green-500 dark:hover:bg-blue-500 hover:comic-shadow hover:border-2 hover:border-black dark:hover:border-white"
                     }`}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
