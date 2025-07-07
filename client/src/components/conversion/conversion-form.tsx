@@ -165,14 +165,9 @@ export default function ConversionForm() {
             <Clock className="w-4 h-4" />
             <p className="text-sm font-medium">
               Files are temporarily stored and automatically deleted after download. See our{" "}
-              <a 
-                href="https://eco-tube-kjks8st75-gitchkings-projects.vercel.app/terms" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="underline hover:text-blue-600 dark:hover:text-blue-300 transition-colors"
-              >
-                Terms of Service
-              </a> for details.
+              <WouterLink href="/terms">
+                <span className="underline hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer transition-colors">Terms of Service</span>
+              </WouterLink> for details.
             </p>
           </div>
         </motion.div>
