@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
+import { Link as WouterLink } from "wouter";
 import { Link, Zap, Sliders, Music, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -164,7 +165,9 @@ export default function ConversionForm() {
             <Clock className="w-4 h-4" />
             <p className="text-sm font-medium">
               Files are temporarily stored and automatically deleted after download. See our{" "}
-              <a href="/terms" className="underline hover:text-blue-600">Terms of Service</a> for details.
+              <WouterLink href="/terms">
+                <span className="underline hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer transition-colors">Terms of Service</span>
+              </WouterLink> for details.
             </p>
           </div>
         </motion.div>
