@@ -59,10 +59,10 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <section className="py-12 bg-gradient-to-br from-blue-50 to-indigo-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800">
+      <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:bg-gradient-to-br dark:from-black dark:to-gray-900">
         <div className="max-w-2xl mx-auto px-4">
           <motion.div 
-            className="bg-white dark:bg-gray-800 rounded-comic p-8 text-center comic-shadow border-2 border-green-200 dark:border-green-600"
+            className="bg-white dark:bg-black rounded-comic p-8 text-center comic-shadow border-2 border-black dark:border-white"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -113,7 +113,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-12 bg-gradient-to-br from-blue-50 to-indigo-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800">
+    <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:bg-gradient-to-br dark:from-black dark:to-gray-900">
       <div className="max-w-2xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -121,12 +121,12 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4 font-comic">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-white mb-4 font-comic">Get in Touch</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 font-nunito">Have questions or feedback? We'd love to hear from you!</p>
         </motion.div>
 
         <motion.div 
-          className="bg-white dark:bg-gray-800 rounded-comic p-8 comic-shadow border-2 border-indigo-200 dark:border-gray-600"
+          className="bg-white dark:bg-black rounded-comic p-8 comic-shadow border-2 border-black dark:border-white"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

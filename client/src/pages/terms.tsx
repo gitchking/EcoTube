@@ -58,7 +58,7 @@ export default function Terms() {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-br from-blue-50 to-cyan-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-blue-900">
+    <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:bg-gradient-to-br dark:from-black dark:to-gray-900">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -69,7 +69,7 @@ export default function Terms() {
           <div className="w-24 h-24 mx-auto mb-6 bg-blue-200 rounded-full flex items-center justify-center comic-shadow border-4 border-blue-400">
             <FileText className="text-blue-800 w-12 h-12" />
           </div>
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4 font-comic">Terms of Service</h2>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-white mb-4 font-comic">Terms of Service</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 font-nunito">Simple, fair terms for using our eco-friendly conversion service.</p>
           <p className="text-sm text-gray-500 dark:text-gray-400 font-nunito mt-2">Last updated: January 2024</p>
         </motion.div>
@@ -83,7 +83,7 @@ export default function Terms() {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-comic p-6 comic-shadow border-2 border-gray-200 dark:border-gray-600"
+              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -98,7 +98,7 @@ export default function Terms() {
                   <section.icon className={`${section.iconColor} w-6 h-6`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 font-comic">{section.title}</h3>
+                  <h3 className="text-xl font-bold text-forest-700 dark:text-white mb-3 font-comic">{section.title}</h3>
                   <p className="text-gray-600 dark:text-gray-300 font-nunito leading-relaxed">{section.content}</p>
                 </div>
               </div>
@@ -112,14 +112,14 @@ export default function Terms() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-blue-50 dark:bg-gray-800 border-2 border-blue-200 dark:border-blue-600 rounded-comic p-6 comic-shadow">
+          <div className="bg-blue-50 dark:bg-black border-2 border-black dark:border-white rounded-comic p-6 comic-shadow">
             <h3 className="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2 font-comic">Contact Information</h3>
             <p className="text-blue-600 dark:text-blue-400 font-nunito">
               For questions about these terms, contact us at <a href="mailto:legal@ecotube.com" className="font-semibold hover:text-blue-800 dark:hover:text-blue-200 transition-colors">legal@ecotube.com</a>
             </p>
           </div>
           
-          <div className="bg-green-50 dark:bg-gray-800 border-2 border-green-200 dark:border-green-600 rounded-comic p-6 comic-shadow">
+          <div className="bg-green-50 dark:bg-black border-2 border-black dark:border-white rounded-comic p-6 comic-shadow">
             <h3 className="text-lg font-bold text-green-700 dark:text-green-300 mb-2 font-comic">Fair Use Reminder</h3>
             <p className="text-green-600 dark:text-green-400 font-nunito">
               Please use EcoTube responsibly and respect content creators' rights. Our service is designed for personal, legal use only.
