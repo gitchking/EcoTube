@@ -148,3 +148,11 @@ Changelog:
   * Added FFmpeg multi-threading with all CPU cores utilization
   * Disabled unnecessary metadata processing for streamlined conversion
   * Target speeds: 2:50 audio in 10-12s, 10min videos in 30-35s, 1hr videos in 45-50s
+- July 07, 2025. Implemented comprehensive temporary file management:
+  * Added automatic file cleanup system with 10-minute retention policy
+  * Created warning dialogue informing users about temporary storage
+  * Implemented session-based file tracking for proper cleanup
+  * Added automatic cleanup on page refresh and browser close
+  * Files deleted 30 seconds after download completion
+  * Background cleanup process runs every 5 minutes
+  * Manual cleanup endpoint for immediate file removal

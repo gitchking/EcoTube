@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
-import { Link, Zap, Sliders, Music } from "lucide-react";
+import { Link, Zap, Sliders, Music, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -151,6 +151,22 @@ export default function ConversionForm() {
               <span className="font-bold text-white">Convert</span>
             </>
           </Button>
+        </motion.div>
+
+        {/* Temporary Storage Hint */}
+        <motion.div
+          className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-comic"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <div className="flex items-center space-x-2 text-blue-800 dark:text-blue-200">
+            <Clock className="w-4 h-4" />
+            <p className="text-sm font-medium">
+              Files are temporarily stored and automatically deleted after download. See our{" "}
+              <a href="/terms" className="underline hover:text-blue-600">Terms of Service</a> for details.
+            </p>
+          </div>
         </motion.div>
       </form>
     </motion.div>

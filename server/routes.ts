@@ -8,6 +8,25 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// Track active file sessions for cleanup
+const activeFiles = new Map<string, { filePath: string; timestamp: number }>();
+
+// Cleanup old files every 10 minutes
+setInterval(() => {
+  const now = Date.now();
+  const tenMinutes = 10 * 60 * 1000;
+  
+  for (const [sessionId, fileInfo] of activeFiles.entries()) {
+    if (now - fileInfo.timestamp > tenMinutes) {
+      // Delete the file if it still exists
+      if (fs.existsSync(fileInfo.filePath)) {
+        fs.unlink(fileInfo.filePath, () => {});
+      }
+      activeFiles.delete(sessionId);
+    }
+  }
+}, 5 * 60 * 1000); // Check every 5 minutes
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -152,13 +171,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
             if (files.length > 0) {
               const filePath = path.join(tempDir, files[0]);
               
+              // Track the file for cleanup
+              const sessionId = `session_${timestamp}`;
+              activeFiles.set(sessionId, { 
+                filePath, 
+                timestamp: Date.now() 
+              });
+              
               // Serve the file for download
               res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
                 if (err) {
                   console.error('Download error:', err);
                 }
-                // Clean up file after download
-                fs.unlink(filePath, () => {});
+                // Schedule file cleanup after 30 seconds to allow download completion
+                setTimeout(() => {
+                  if (fs.existsSync(filePath)) {
+                    fs.unlink(filePath, () => {});
+                  }
+                  activeFiles.delete(sessionId);
+                }, 30000);
               });
             } else {
               res.status(500).json({ 
@@ -249,6 +280,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         error: "Failed to get video information" 
       });
+    }
+  });
+
+  // Cleanup endpoint for manual cleanup when page is refreshed/closed
+  app.post("/api/cleanup", async (req, res) => {
+    try {
+      const tempDir = path.join(__dirname, '../temp');
+      if (fs.existsSync(tempDir)) {
+        const files = fs.readdirSync(tempDir);
+        let cleanedCount = 0;
+        
+        files.forEach(file => {
+          const filePath = path.join(tempDir, file);
+          const stats = fs.statSync(filePath);
+          const now = Date.now();
+          const fiveMinutes = 5 * 60 * 1000;
+          
+          // Delete files older than 5 minutes
+          if (now - stats.mtime.getTime() > fiveMinutes) {
+            fs.unlink(filePath, () => {});
+            cleanedCount++;
+          }
+        });
+        
+        res.json({ success: true, cleaned: cleanedCount });
+      } else {
+        res.json({ success: true, cleaned: 0 });
+      }
+    } catch (error) {
+      res.status(500).json({ success: false, error: "Cleanup failed" });
     }
   });
 

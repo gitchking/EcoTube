@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -15,6 +16,32 @@ import Navigation from "@/components/layout/navigation";
 import Footer from "@/components/layout/footer";
 
 function Router() {
+  // Cleanup temporary files when app mounts and unmounts
+  useEffect(() => {
+    const handleCleanup = async () => {
+      try {
+        await fetch('/api/cleanup', { method: 'POST' });
+      } catch (error) {
+        console.error('Cleanup failed:', error);
+      }
+    };
+
+    // Cleanup on mount (page refresh)
+    handleCleanup();
+
+    // Cleanup on page unload
+    const handleBeforeUnload = () => {
+      navigator.sendBeacon('/api/cleanup');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      handleCleanup();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-cream dark:bg-gray-900 flex flex-col">
       <Navigation />

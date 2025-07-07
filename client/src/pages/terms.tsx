@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Users, AlertTriangle, Copyright, Gavel, Leaf } from "lucide-react";
+import { FileText, Users, AlertTriangle, Copyright, Gavel, Leaf, Clock } from "lucide-react";
 
 export default function Terms() {
   const sections = [
@@ -16,6 +16,13 @@ export default function Terms() {
       content: "EcoTube provides YouTube to MP3 conversion services for personal use only. Our service extracts audio from YouTube videos and provides download links. We aim for 99% uptime but cannot guarantee uninterrupted service.",
       iconColor: "text-green-800",
       bgColor: "bg-green-200"
+    },
+    {
+      icon: Clock,
+      title: "Temporary File Storage",
+      content: "All converted files are temporarily stored on our servers and automatically deleted within 10 minutes of creation or 30 seconds after download completion. Files are NOT permanently stored or backed up. Upon page refresh, browser closure, or session end, any unconverted files are immediately deleted. We do not retain any uploaded or converted content.",
+      iconColor: "text-indigo-800",
+      bgColor: "bg-indigo-200"
     },
     {
       icon: Copyright,
