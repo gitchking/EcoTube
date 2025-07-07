@@ -53,8 +53,8 @@ export default function Changelog() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-forest-700 dark:text-white mb-4 font-comic">Changelog</h2>
-          <p className="text-xl text-forest-600 dark:text-gray-300 font-nunito">Latest updates and improvements</p>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-gray-200 mb-4 font-comic">Changelog</h2>
+          <p className="text-xl text-forest-600 dark:text-gray-400 font-nunito">Latest updates and improvements</p>
         </motion.div>
 
         <motion.div 
@@ -85,8 +85,8 @@ export default function Changelog() {
                     <version.icon className={`${version.iconColor} w-6 h-6`} />
                   </motion.div>
                   <div>
-                    <h3 className="text-xl font-bold text-forest-700 dark:text-white font-comic">Version {version.version}</h3>
-                    <p className="text-forest-500 dark:text-gray-300 font-nunito">Released: {version.date}</p>
+                    <h3 className="text-xl font-bold text-forest-700 dark:text-gray-200 font-comic">Version {version.version}</h3>
+                    <p className="text-forest-500 dark:text-gray-400 font-nunito">Released: {version.date}</p>
                   </div>
                 </div>
                 {version.badge && (
@@ -102,7 +102,7 @@ export default function Changelog() {
               </div>
               
               <motion.ul 
-                className="text-forest-600 dark:text-gray-300 font-nunito space-y-2"
+                className="text-forest-600 dark:text-gray-400 font-nunito space-y-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
