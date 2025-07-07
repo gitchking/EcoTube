@@ -1,0 +1,8 @@
+server/
+*.md
+!client/
+node_modules/
+.env*
+.git/
+.github/
+*.log

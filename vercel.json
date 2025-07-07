@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "cd client && npm run build",
-  "outputDirectory": "client/dist",
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "status": 404
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|ico|svg))",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      }
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
