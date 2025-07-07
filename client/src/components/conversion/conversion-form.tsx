@@ -165,16 +165,14 @@ export default function ConversionForm() {
             <Clock className="w-4 h-4" />
             <p className="text-sm font-medium">
               Files are temporarily stored and automatically deleted after download. See our{" "}
-              <WouterLink href="/terms">
-                <span 
-                  className="underline hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer transition-colors"
-                  onClick={(e) => {
-                    // Debug log to verify click is working
-                    console.log("Terms of Service link clicked");
-                  }}
-                >
-                  Terms of Service
-                </span>
+              <WouterLink 
+                href="/terms"
+                className="underline hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer transition-colors"
+                onClick={() => {
+                  console.log("Terms of Service link clicked - should navigate to /terms");
+                }}
+              >
+                Terms of Service
               </WouterLink> for details.
             </p>
           </div>
