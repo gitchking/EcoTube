@@ -25,8 +25,8 @@ Vercel will auto-detect your settings. **Verify these are correct:**
 
 ```
 ✅ Framework Preset: Vite
-✅ Root Directory: ./
-✅ Build Command: vite build
+✅ Root Directory: client
+✅ Build Command: npm run build
 ✅ Output Directory: dist
 ✅ Install Command: npm install
 ```
