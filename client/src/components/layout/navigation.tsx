@@ -59,7 +59,9 @@ export default function Navigation() {
                 </motion.div>
               </Link>
             ))}
-            <ThemeSwitch />
+            <div className="ml-4">
+              <ThemeSwitch />
+            </div>
           </div>
           
           {/* Mobile Menu Button */}
