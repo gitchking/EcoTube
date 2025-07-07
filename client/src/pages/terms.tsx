@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { FileText, Users, AlertTriangle, Copyright, Gavel, Leaf, Clock } from "lucide-react";
 
 export default function Terms() {
+  // Debug log to verify component is loading
+  console.log("Terms component is loading...");
+
   const sections = [
     {
       icon: Users,
@@ -49,8 +52,8 @@ export default function Terms() {
       icon: Leaf,
       title: "Environmental Commitment",
       content: "Our servers run on renewable energy as part of our eco-friendly mission. By using EcoTube, you support sustainable technology practices. We continuously work to minimize our environmental impact.",
-      iconColor: "text-forest-800",
-      bgColor: "bg-forest-200"
+      iconColor: "text-green-800",
+      bgColor: "bg-green-200"
     }
   ];
 
