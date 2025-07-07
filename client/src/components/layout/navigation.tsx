@@ -36,8 +36,8 @@ export default function Navigation() {
                 <Leaf className="text-forest-800 dark:text-white w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <h1 className="text-2xl font-bold text-forest-700 dark:text-white font-comic">EcoTube</h1>
-                <p className="text-xs text-forest-500 dark:text-gray-300 font-nunito">Premium Convertor</p>
+                <h1 className="text-2xl font-bold text-forest-700 dark:text-white font-comic">Premium Convertor</h1>
+                <p className="text-xs text-forest-500 dark:text-gray-300 font-nunito">YouTube to MP3</p>
               </div>
             </motion.div>
           </Link>
