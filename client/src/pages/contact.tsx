@@ -147,9 +147,9 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center mr-3">
-                  <User className="text-orange-800 w-4 h-4" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-white mb-3 font-comic">
+                <span className="w-8 h-8 bg-orange-200 dark:bg-orange-600 rounded-full flex items-center justify-center mr-3">
+                  <User className="text-orange-800 dark:text-orange-100 w-4 h-4" />
                 </span>
                 Your Name
               </Label>
@@ -169,9 +169,9 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-3">
-                  <Mail className="text-blue-800 w-4 h-4" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-white mb-3 font-comic">
+                <span className="w-8 h-8 bg-blue-200 dark:bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                  <Mail className="text-blue-800 dark:text-blue-100 w-4 h-4" />
                 </span>
                 Email Address
               </Label>
@@ -191,9 +191,9 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center mr-3">
-                  <MessageCircle className="text-green-800 w-4 h-4" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-white mb-3 font-comic">
+                <span className="w-8 h-8 bg-green-200 dark:bg-green-600 rounded-full flex items-center justify-center mr-3">
+                  <MessageCircle className="text-green-800 dark:text-green-100 w-4 h-4" />
                 </span>
                 Your Message
               </Label>

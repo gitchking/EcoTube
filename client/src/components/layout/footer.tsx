@@ -20,7 +20,7 @@ export default function Footer() {
               <p className="text-forest-600 dark:text-gray-300 font-nunito text-sm">Premium Convertor</p>
             </div>
           </motion.div>
-          
+
           <motion.div 
             className="text-center text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export default function Footer() {
           >
             <p className="text-forest-600 dark:text-gray-300">&copy; 2024 EcoTube 🌿</p>
           </motion.div>
-          
+
           <motion.div 
             className="flex flex-col items-center md:items-end space-y-2 text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
