@@ -10,7 +10,7 @@ export default function Changelog() {
       bgColor: "bg-red-200",
       iconColor: "text-red-800",
       badge: "Latest",
-      badgeColor: "bg-green-100 text-green-700",
+      badgeColor: "bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-100",
       changes: [
         { icon: Plus, text: "Added 320kbps premium quality option", bgColor: "bg-green-200", iconColor: "text-green-800" },
         { icon: Zap, text: "40% faster conversion speeds", bgColor: "bg-orange-200", iconColor: "text-orange-800" },
