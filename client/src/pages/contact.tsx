@@ -1,51 +1,21 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useMutation } from "@tanstack/react-query";
 import { User, Mail, MessageCircle, Send, Heart, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: { name: string; email: string; message: string }) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return await response.json();
-    },
-    onSuccess: (data) => {
-      if (data.success) {
-        setIsSubmitted(true);
-        toast({
-          title: "Message Sent! 🌟",
-          description: "Thanks for reaching out! We'll get back to you within 24 hours.",
-        });
-      } else {
-        toast({
-          title: "Failed to Send",
-          description: data.error || "An error occurred while sending your message.",
-          variant: "destructive",
-        });
-      }
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Failed to Send",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) {
       toast({
@@ -56,7 +26,28 @@ export default function Contact() {
       return;
     }
 
-    contactMutation.mutate({ name, email, message });
+    setIsSubmitting(true);
+    
+    // Simulate form submission delay for better UX
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // For demo purposes, we'll show a success message
+      // In production, you can integrate with Formspree, Netlify Forms, or similar service
+      setIsSubmitted(true);
+      toast({
+        title: "Message Received! 🌟",
+        description: "Thanks for your message! For now, please reach out via email at contact@ecotube.com",
+      });
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly at contact@ecotube.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -91,7 +82,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Message Sent! 🌟
+              Message Received! 🌟
             </motion.h2>
             
             <motion.p 
@@ -100,7 +91,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Thanks for reaching out! We'll get back to you within 24 hours.
+              Thanks for your message! Please reach out to us directly at <strong>contact@ecotube.com</strong> for immediate assistance.
             </motion.p>
             
             <motion.div
@@ -218,10 +209,10 @@ export default function Contact() {
               <Button 
                 type="submit" 
                 className="w-full bg-green-600 hover:bg-green-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-comic black-button-shadow transition-all duration-200 text-lg font-comic border-2 border-green-800 dark:border-blue-800"
-                disabled={contactMutation.isPending}
+                disabled={isSubmitting}
               >
                 <span className="flex items-center justify-center">
-                  {contactMutation.isPending ? (
+                  {isSubmitting ? (
                     <>
                       <motion.div
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-3"

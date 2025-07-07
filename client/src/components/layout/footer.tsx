@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { Leaf } from "lucide-react";
 
 export default function Footer() {
@@ -37,8 +38,12 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <div className="flex space-x-4">
-              <a href="/privacy" className="text-forest-700 dark:text-white hover:text-comic-orange dark:hover:text-orange-400 transition-colors">Privacy Policy</a>
-              <a href="/terms" className="text-forest-700 dark:text-white hover:text-comic-orange dark:hover:text-orange-400 transition-colors">Terms of Service</a>
+              <Link href="/privacy">
+                <span className="text-forest-700 dark:text-white hover:text-comic-orange dark:hover:text-orange-400 transition-colors cursor-pointer">Privacy Policy</span>
+              </Link>
+              <Link href="/terms">
+                <span className="text-forest-700 dark:text-white hover:text-comic-orange dark:hover:text-orange-400 transition-colors cursor-pointer">Terms of Service</span>
+              </Link>
             </div>
           </motion.div>
         </div>
