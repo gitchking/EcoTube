@@ -66,7 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const downloadStrategies = [
         // Strategy 1: Fastest with Python yt-dlp - optimized for speed
         {
-          command: '/home/runner/workspace/.pythonlibs/bin/python',
+          command: 'python',
           args: [
             '-m', 'yt_dlp',
             '--extract-audio',
@@ -138,11 +138,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       let currentStrategy = 0;
 
-      function tryDownload() {
+      const tryDownload = () => {
         if (currentStrategy >= downloadStrategies.length) {
           return res.status(500).json({ 
             success: false, 
-            error: "All conversion methods failed. YouTube may be blocking requests temporarily. Please try again later." 
+            error: "All conversion methods failed. Please check if yt-dlp is installed and accessible in your system's PATH. YouTube may also be blocking requests temporarily. Please try again later." 
           });
         }
 
