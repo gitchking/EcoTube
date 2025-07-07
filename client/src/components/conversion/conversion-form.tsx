@@ -123,7 +123,7 @@ export default function ConversionForm() {
             Audio Quality
           </Label>
           <Select value={quality} onValueChange={setQuality}>
-            <SelectTrigger className="w-full px-4 py-4 border-3 border-blue-300 dark:border-blue-400 rounded-comic focus:border-blue-500 dark:focus:border-blue-300 focus:outline-none focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-600 font-nunito text-lg bg-white dark:bg-black text-black dark:text-white h-16">
+            <SelectTrigger className="w-full px-4 py-4 border-3 border-blue-300 dark:border-blue-400 rounded-comic focus:border-blue-500 dark:focus:border-blue-300 focus:outline-none focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-600 font-nunito text-lg bg-white dark:bg-black text-black dark:text-white transition-all duration-150 ease-out h-16">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
