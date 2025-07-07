@@ -71,9 +71,9 @@ export default function Changelog() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ 
-                scale: 1.02
+                scale: 1.02,
+                transition: { duration: 0.1, ease: "easeOut" }
               }}
-              transition={{ duration: 0.1, ease: "easeOut" }}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">

@@ -86,9 +86,9 @@ export default function Terms() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ 
                 scale: 1.01,
-                boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)"
+                boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)",
+                transition: { duration: 0.1, ease: "easeOut" }
               }}
-              transition={{ duration: 0.1, ease: "easeOut" }}
             >
               <div className="flex items-start space-x-4">
                 <div className={`w-12 h-12 ${section.bgColor} rounded-full flex items-center justify-center comic-shadow flex-shrink-0`}>

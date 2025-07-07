@@ -93,8 +93,6 @@ export default function Home() {
               className="bg-white dark:bg-black rounded-comic p-6 comic-shadow text-center border-2 border-black dark:border-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
               whileHover={{ 
                 scale: 1.05,
