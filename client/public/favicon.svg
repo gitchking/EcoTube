@@ -1,0 +1,19 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with eco-friendly gradient -->
+  <circle cx="16" cy="16" r="15" fill="url(#ecoGradient)" stroke="#1a3a2a" stroke-width="2"/>
+  
+  <!-- Music note in center -->
+  <path d="M10 22c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm0-12v10.5c-.4-.3-.9-.5-1.5-.5-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V12h8V10h-7.5z" fill="white"/>
+  
+  <!-- Green leaf accent -->
+  <path d="M22 8c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4zm1 5.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" fill="#4ade80"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="ecoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#16a34a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#15803d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
