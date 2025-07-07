@@ -16,8 +16,8 @@ export default function Footer() {
               <Leaf className="text-forest-800 dark:text-white w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-xl font-bold font-comic text-forest-800 dark:text-white">Premium Convertor</h3>
-              <p className="text-forest-600 dark:text-gray-300 font-nunito text-sm">YouTube to MP3</p>
+              <h3 className="text-xl font-bold font-comic text-forest-800 dark:text-white">EcoTube</h3>
+              <p className="text-forest-600 dark:text-gray-300 font-nunito text-sm">Premium Convertor</p>
             </div>
           </motion.div>
           
@@ -27,7 +27,7 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="text-forest-600 dark:text-gray-300">&copy; 2024 Premium Convertor 🌿</p>
+            <p className="text-forest-600 dark:text-gray-300">&copy; 2024 EcoTube 🌿</p>
           </motion.div>
           
           <motion.div 
