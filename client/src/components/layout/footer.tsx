@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Music } from "lucide-react";
+import { Leaf } from "lucide-react";
 
 export default function Footer() {
   return (

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Music, Menu, X } from "lucide-react";
+import { Leaf, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { ThemeSwitch } from "@/components/theme/theme-switch";
 
@@ -32,12 +32,12 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center comic-shadow border-2 border-purple-700 dark:border-white">
-                <Music className="text-white w-6 h-6" />
+              <div className="w-12 h-12 bg-forest-200 dark:bg-black rounded-full flex items-center justify-center comic-shadow border-2 border-forest-300 dark:border-white border-2 border-black dark:border-white">
+                <Leaf className="text-forest-800 dark:text-white w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <h1 className="text-2xl font-bold text-forest-700 dark:text-white font-comic">Premium Convertor</h1>
-                <p className="text-xs text-forest-500 dark:text-gray-300 font-nunito">YouTube to MP3</p>
+                <h1 className="text-2xl font-bold text-forest-700 dark:text-white font-comic">EcoTube</h1>
+                <p className="text-xs text-forest-500 dark:text-gray-300 font-nunito">Premium Convertor</p>
               </div>
             </motion.div>
           </Link>
