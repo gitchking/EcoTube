@@ -96,7 +96,8 @@ export default function Home() {
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)"
+                boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)",
+                transition: { duration: 0.1, ease: "easeOut" }
               }}
             >
               <div className={`w-16 h-16 mx-auto mb-4 ${feature.bgColor} rounded-full flex items-center justify-center comic-shadow`}>
