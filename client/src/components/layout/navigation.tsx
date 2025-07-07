@@ -59,7 +59,7 @@ export default function Navigation() {
                 </motion.div>
               </Link>
             ))}
-            <div className="ml-4">
+            <div className="ml-8">
               <ThemeSwitch />
             </div>
           </div>
