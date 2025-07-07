@@ -102,7 +102,7 @@ export default function Changelog() {
               </div>
               
               <motion.ul 
-                className="text-gray-300 font-nunito space-y-2"
+                className="text-forest-600 dark:text-gray-400 font-nunito space-y-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
