@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { config } from "@/lib/config";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import FAQs from "@/pages/faqs";
@@ -20,26 +21,33 @@ function Router() {
   useEffect(() => {
     const handleCleanup = async () => {
       try {
-        await fetch('/api/cleanup', { method: 'POST' });
+        await fetch(`${config.apiUrl}/api/cleanup`, { 
+          method: 'POST'
+        });
       } catch (error) {
-        console.error('Cleanup failed:', error);
+        if (config.enableDebug) {
+          console.error('Cleanup failed:', error);
+        }
       }
     };
 
-    // Cleanup on mount (page refresh)
-    handleCleanup();
-
-    // Cleanup on page unload
-    const handleBeforeUnload = () => {
-      navigator.sendBeacon('/api/cleanup');
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+    // Only cleanup if API URL is configured
+    if (config.apiUrl) {
+      // Cleanup on mount (page refresh)
       handleCleanup();
-    };
+
+      // Cleanup on page unload
+      const handleBeforeUnload = () => {
+        navigator.sendBeacon(`${config.apiUrl}/api/cleanup`);
+      };
+
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+        handleCleanup();
+      };
+    }
   }, []);
 
   return (
