@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Mail, MessageCircle, Send, Heart, Check } from "lucide-react";

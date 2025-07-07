@@ -1,3 +1,4 @@
+import * as React from "react";
 import { motion } from "framer-motion";
 import { FileText, Users, AlertTriangle, Copyright, Gavel, Leaf, Clock } from "lucide-react";
 
@@ -80,30 +81,33 @@ export default function Terms() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {sections.map((section, index) => (
-            <motion.div
-              key={index}
-              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ 
-                scale: 1.01,
-                boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)",
-                transition: { duration: 0.1, ease: "easeOut" }
-              }}
-            >
-              <div className="flex items-start space-x-4">
-                <div className={`w-12 h-12 ${section.bgColor} rounded-full flex items-center justify-center comic-shadow flex-shrink-0`}>
-                  <section.icon className={`${section.iconColor} w-6 h-6`} />
+          {sections.map((sec, index) => {
+            const Icon = sec.icon;
+            return (
+              <motion.div
+                key={index}
+                className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.01,
+                  boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)",
+                  transition: { duration: 0.1, ease: "easeOut" }
+                }}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className={`w-12 h-12 ${sec.bgColor} rounded-full flex items-center justify-center comic-shadow flex-shrink-0`}>
+                    <Icon className={`${sec.iconColor} w-6 h-6`} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-forest-700 dark:text-white mb-3 font-comic">{sec.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 font-nunito leading-relaxed">{sec.content}</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-forest-700 dark:text-white mb-3 font-comic">{section.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 font-nunito leading-relaxed">{section.content}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <motion.div 
