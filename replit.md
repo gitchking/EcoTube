@@ -140,3 +140,11 @@ Changelog:
   * Enhanced changelog hover effects with proper shadow colors
   * Added dark mode support for glow animations with white shadows
   * Maintained forest green shadows in light mode for comic aesthetic
+- July 07, 2025. Optimized conversion speed performance:
+  * Removed preliminary video info check to eliminate 2-3 second delay
+  * Added concurrent fragment downloading (8/6/4 fragments) for parallel processing
+  * Reduced retry attempts and sleep intervals for faster error recovery
+  * Optimized audio format selection prioritizing m4a/webm formats
+  * Added FFmpeg multi-threading with all CPU cores utilization
+  * Disabled unnecessary metadata processing for streamlined conversion
+  * Target speeds: 2:50 audio in 10-12s, 10min videos in 30-35s, 1hr videos in 45-50s

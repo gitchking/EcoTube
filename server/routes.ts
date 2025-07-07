@@ -43,163 +43,146 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const timestamp = Date.now();
       const outputPath = path.join(tempDir, `audio_${timestamp}.%(ext)s`);
       
-      // First, try to get video info to check availability
-      const infoArgs = [
-        '--get-title', 
-        '--get-duration',
-        '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        '--referer', 'https://www.youtube.com/',
-        '--no-check-certificate',
-        validatedData.url
+      // Optimized download strategies for speed
+      const downloadStrategies = [
+        // Strategy 1: Fastest with Python yt-dlp - optimized for speed
+        {
+          command: '/home/runner/workspace/.pythonlibs/bin/python',
+          args: [
+            '-m', 'yt_dlp',
+            '--extract-audio',
+            '--audio-format', 'mp3',
+            '--audio-quality', validatedData.quality.replace('k', ''),
+            '--output', outputPath,
+            '--no-playlist',
+            '--ignore-errors',
+            '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            '--referer', 'https://www.youtube.com/',
+            '--no-check-certificate',
+            // Speed optimizations
+            '--concurrent-fragments', '8',
+            '--extractor-retries', '2',
+            '--fragment-retries', '2',
+            '--retry-sleep', '1',
+            '--no-part',
+            '--no-mtime',
+            '--format', 'bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio',
+            '--postprocessor-args', 'ffmpeg:-ac 2 -threads 0',
+            '--embed-thumbnail',
+            '--no-embed-info-json',
+            validatedData.url
+          ]
+        },
+        // Strategy 2: Fast system yt-dlp with speed optimizations
+        {
+          command: 'yt-dlp',
+          args: [
+            '--extract-audio',
+            '--audio-format', 'mp3',
+            '--audio-quality', validatedData.quality.replace('k', ''),
+            '--output', outputPath,
+            '--no-playlist',
+            '--ignore-errors',
+            '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            '--referer', 'https://www.youtube.com/',
+            '--no-check-certificate',
+            // Speed optimizations
+            '--concurrent-fragments', '6',
+            '--extractor-retries', '2',
+            '--fragment-retries', '2',
+            '--retry-sleep', '1',
+            '--no-part',
+            '--no-mtime',
+            '--format', 'bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio',
+            '--postprocessor-args', 'ffmpeg:-ac 2 -threads 0',
+            validatedData.url
+          ]
+        },
+        // Strategy 3: Fallback with minimal options for maximum compatibility
+        {
+          command: 'yt-dlp',
+          args: [
+            '--extract-audio',
+            '--audio-format', 'mp3',
+            '--audio-quality', validatedData.quality.replace('k', ''),
+            '--output', outputPath,
+            '--no-playlist',
+            '--ignore-errors',
+            '--concurrent-fragments', '4',
+            '--extractor-retries', '1',
+            '--fragment-retries', '1',
+            '--no-part',
+            validatedData.url
+          ]
+        }
       ];
 
-      // Check if video is accessible first
-      const infoProcess = spawn('yt-dlp', infoArgs);
-      let infoOutput = '';
-      let infoError = '';
+      let currentStrategy = 0;
 
-      infoProcess.stdout.on('data', (data) => {
-        infoOutput += data.toString();
-      });
-
-      infoProcess.stderr.on('data', (data) => {
-        infoError += data.toString();
-      });
-
-      infoProcess.on('close', (infoCode) => {
-        if (infoCode !== 0) {
-          console.error('Video info error:', infoError);
-          return res.status(400).json({ 
+      function tryDownload() {
+        if (currentStrategy >= downloadStrategies.length) {
+          return res.status(500).json({ 
             success: false, 
-            error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region." 
+            error: "All conversion methods failed. YouTube may be blocking requests temporarily. Please try again later." 
           });
         }
 
-        // If info check passed, proceed with download using multiple fallback strategies
-        const downloadStrategies = [
-          // Strategy 1: Use Python yt-dlp with updated version
-          {
-            command: '/home/runner/workspace/.pythonlibs/bin/python',
-            args: [
-              '-m', 'yt_dlp',
-              '--extract-audio',
-              '--audio-format', 'mp3',
-              '--audio-quality', validatedData.quality.replace('k', ''),
-              '--output', outputPath,
-              '--no-playlist',
-              '--ignore-errors',
-              '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              '--referer', 'https://www.youtube.com/',
-              '--no-check-certificate',
-              '--extractor-retries', '5',
-              '--fragment-retries', '5',
-              '--retry-sleep', '3',
-              '--sleep-interval', '1',
-              '--max-sleep-interval', '5',
-              validatedData.url
-            ]
-          },
-          // Strategy 2: Use system yt-dlp with alternative approach
-          {
-            command: 'yt-dlp',
-            args: [
-              '--extract-audio',
-              '--audio-format', 'mp3',
-              '--audio-quality', validatedData.quality.replace('k', ''),
-              '--output', outputPath,
-              '--no-playlist',
-              '--ignore-errors',
-              '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              '--referer', 'https://www.youtube.com/',
-              '--no-check-certificate',
-              '--format', 'bestaudio[ext=m4a]/bestaudio',
-              '--extractor-retries', '3',
-              '--fragment-retries', '3',
-              '--retry-sleep', '2',
-              validatedData.url
-            ]
-          },
-          // Strategy 3: Simple fallback
-          {
-            command: 'yt-dlp',
-            args: [
-              '--extract-audio',
-              '--audio-format', 'mp3',
-              '--output', outputPath,
-              '--no-playlist',
-              '--ignore-errors',
-              validatedData.url
-            ]
+        const strategy = downloadStrategies[currentStrategy];
+        const ytDlp = spawn(strategy.command, strategy.args);
+        let videoTitle = '';
+        let error = '';
+
+        ytDlp.stdout.on('data', (data) => {
+          const output = data.toString();
+          // Extract title from yt-dlp output
+          const titleMatch = output.match(/\[download\] Destination: (.+)/);
+          if (titleMatch) {
+            videoTitle = path.basename(titleMatch[1], '.mp3');
           }
-        ];
+        });
 
-        let currentStrategy = 0;
+        ytDlp.stderr.on('data', (data) => {
+          error += data.toString();
+        });
 
-        function tryDownload() {
-          if (currentStrategy >= downloadStrategies.length) {
-            return res.status(500).json({ 
-              success: false, 
-              error: "All conversion methods failed. YouTube may be blocking requests temporarily. Please try again later." 
-            });
-          }
-
-          const strategy = downloadStrategies[currentStrategy];
-          const ytDlp = spawn(strategy.command, strategy.args);
-          let videoTitle = '';
-          let error = '';
-
-          ytDlp.stdout.on('data', (data) => {
-            const output = data.toString();
-            // Extract title from yt-dlp output
-            const titleMatch = output.match(/\[download\] Destination: (.+)/);
-            if (titleMatch) {
-              videoTitle = path.basename(titleMatch[1], '.mp3');
-            }
-          });
-
-          ytDlp.stderr.on('data', (data) => {
-            error += data.toString();
-          });
-
-          ytDlp.on('close', (code) => {
-            if (code === 0) {
-              // Find the generated file
-              const files = fs.readdirSync(tempDir).filter(f => f.startsWith(`audio_${timestamp}`));
-              if (files.length > 0) {
-                const filePath = path.join(tempDir, files[0]);
-                
-                // Serve the file for download
-                res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
-                  if (err) {
-                    console.error('Download error:', err);
-                  }
-                  // Clean up file after download
-                  fs.unlink(filePath, () => {});
-                });
-              } else {
-                res.status(500).json({ 
-                  success: false, 
-                  error: "Conversion completed but file not found" 
-                });
-              }
+        ytDlp.on('close', (code) => {
+          if (code === 0) {
+            // Find the generated file
+            const files = fs.readdirSync(tempDir).filter(f => f.startsWith(`audio_${timestamp}`));
+            if (files.length > 0) {
+              const filePath = path.join(tempDir, files[0]);
+              
+              // Serve the file for download
+              res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
+                if (err) {
+                  console.error('Download error:', err);
+                }
+                // Clean up file after download
+                fs.unlink(filePath, () => {});
+              });
             } else {
-              console.error(`Strategy ${currentStrategy + 1} (${strategy.command}) failed:`, error);
-              // Check for specific YouTube blocking errors
-              if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed')) {
-                return res.status(429).json({ 
-                  success: false, 
-                  error: "YouTube is currently blocking download requests. This is a temporary issue affecting many YouTube downloaders. Please try again later or use a different video.",
-                  details: "YouTube has implemented stronger anti-bot measures recently."
-                });
-              }
-              currentStrategy++;
-              tryDownload(); // Try next strategy
+              res.status(500).json({ 
+                success: false, 
+                error: "Conversion completed but file not found" 
+              });
             }
-          });
-        }
+          } else {
+            console.error(`Strategy ${currentStrategy + 1} (${strategy.command}) failed:`, error);
+            // Check for specific YouTube blocking errors
+            if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed')) {
+              return res.status(429).json({ 
+                success: false, 
+                error: "YouTube is currently blocking download requests. This is a temporary issue affecting many YouTube downloaders. Please try again later or use a different video.",
+                details: "YouTube has implemented stronger anti-bot measures recently."
+              });
+            }
+            currentStrategy++;
+            tryDownload(); // Try next strategy
+          }
+        });
+      }
 
-        tryDownload();
-      });
+      tryDownload();
 
     } catch (error) {
       if (error instanceof z.ZodError) {
