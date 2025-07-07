@@ -93,12 +93,15 @@ export default function Home() {
               className="bg-white dark:bg-black rounded-comic p-6 comic-shadow text-center border-2 border-black dark:border-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)",
                 transition: { duration: 0.1, ease: "easeOut" }
               }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className={`w-16 h-16 mx-auto mb-4 ${feature.bgColor} rounded-full flex items-center justify-center comic-shadow`}>
                 <feature.icon className={`${feature.iconColor} w-8 h-8`} />
