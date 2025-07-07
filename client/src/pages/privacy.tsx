@@ -73,7 +73,7 @@ export default function Privacy() {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white"
+              className="bg-white dark:bg-gray-800 rounded-comic p-6 comic-shadow border-2 border-gray-200 dark:border-gray-600"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -102,10 +102,10 @@ export default function Privacy() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-green-100 dark:bg-green-900 border-3 border-green-300 dark:border-green-700 rounded-comic p-6 border-2 border-black dark:border-white">
+          <div className="bg-green-50 dark:bg-gray-800 border-2 border-green-200 dark:border-green-600 rounded-comic p-6 comic-shadow">
             <h3 className="text-lg font-bold text-green-700 dark:text-green-300 mb-2 font-comic">Questions About Privacy?</h3>
             <p className="text-green-600 dark:text-green-400 font-nunito">
-              Contact our privacy team at <a href="mailto:privacy@ecotube.com" className="font-semibold hover:text-comic-orange transition-colors">privacy@ecotube.com</a>
+              Contact our privacy team at <a href="mailto:privacy@ecotube.com" className="font-semibold hover:text-purple-600 dark:hover:text-purple-400 transition-colors">privacy@ecotube.com</a>
             </p>
           </div>
         </motion.div>

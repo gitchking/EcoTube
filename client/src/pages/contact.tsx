@@ -139,8 +139,8 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Label className="flex items-center text-lg font-bold text-gray-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3 border-2 border-orange-300">
-                  <User className="text-orange-600 w-4 h-4" />
+                <span className="w-8 h-8 bg-orange-100 dark:bg-orange-200 rounded-full flex items-center justify-center mr-3 border-2 border-orange-300 dark:border-orange-400">
+                  <User className="text-orange-600 dark:text-orange-700 w-4 h-4" />
                 </span>
                 Your Name
               </Label>
@@ -149,7 +149,7 @@ export default function Contact() {
                 placeholder="Enter your full name" 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 bg-gray-50 dark:bg-gray-700"
+                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-500 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 required
               />
             </motion.div>
@@ -161,8 +161,8 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Label className="flex items-center text-lg font-bold text-gray-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 border-2 border-blue-300">
-                  <Mail className="text-blue-600 w-4 h-4" />
+                <span className="w-8 h-8 bg-blue-100 dark:bg-blue-200 rounded-full flex items-center justify-center mr-3 border-2 border-blue-300 dark:border-blue-400">
+                  <Mail className="text-blue-600 dark:text-blue-700 w-4 h-4" />
                 </span>
                 Email Address
               </Label>
@@ -171,7 +171,7 @@ export default function Contact() {
                 placeholder="your.email@example.com" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 bg-gray-50 dark:bg-gray-700"
+                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-500 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 required
               />
             </motion.div>
@@ -183,8 +183,8 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Label className="flex items-center text-lg font-bold text-gray-700 dark:text-gray-200 mb-3 font-comic">
-                <span className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 border-2 border-green-300">
-                  <MessageCircle className="text-green-600 w-4 h-4" />
+                <span className="w-8 h-8 bg-green-100 dark:bg-green-200 rounded-full flex items-center justify-center mr-3 border-2 border-green-300 dark:border-green-400">
+                  <MessageCircle className="text-green-600 dark:text-green-700 w-4 h-4" />
                 </span>
                 Your Message
               </Label>
@@ -193,7 +193,7 @@ export default function Contact() {
                 placeholder="Tell us what's on your mind..." 
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 resize-none bg-gray-50 dark:bg-gray-700"
+                className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-500 rounded-comic focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 font-nunito text-lg transition-all duration-200 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 required
               />
             </motion.div>
